@@ -3,14 +3,16 @@ import logo from './logo.png';
 
 // to get the data from local storage
 const getLocalItems = () => {
-	let list = localStorage.getItem('List');
+	let list = localStorage.getItem('lists');
 
 	if (list) {
-		return JSON.parse(localStorage.getItem('List'));
+		return JSON.parse(localStorage.getItem('lists'));
+	} else {
+		return [];
 	}
 };
 
-function Todo() {
+const Todo = () => {
 	const [inputData, setInputData] = useState('');
 	const [items, setItems] = useState(getLocalItems());
 	const [toggleSubmit, setToggleSubmit] = useState(true);
@@ -71,7 +73,7 @@ function Todo() {
 
 	// add data to local Storage
 	useEffect(() => {
-		localStorage.setItem('List', JSON.stringify(items));
+		localStorage.setItem('lists', JSON.stringify(items));
 	}, [items]);
 
 	return (
@@ -117,6 +119,6 @@ function Todo() {
 			</div>
 		</>
 	);
-}
+};
 
 export default Todo;
