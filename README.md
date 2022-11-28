@@ -3,17 +3,16 @@
   🖊️ A simple Todo App built using <a href="https://reactjs.org/">ReactJS</a>
 </p>
 
-## This is a super simple Todo App built using React js with local storage.
+## This is a super simple Todo App built using React js.
 
-Basic CURD operation is done here. To build this project just download it and install all dependencies
+Basic CURD operation is done here. To build this project just download it and install all dependencies.
 
 ## 😃 Features:
 
 - ➕ Add todos
 - 🗑️ Delete todos
 - 🖊️ Update todos
-- ⏸ Save todos to Local Storage when the state changes
-- ▶️ Load the todos from Local Storage when the site is loaded again
+- ⏸ Fetch todo data from the API
 - 🚫 error message on empty todo
 
 <p align="center">
