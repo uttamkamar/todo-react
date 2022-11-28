@@ -27,7 +27,7 @@ const Todo = () => {
 			setItems(
 				items.map((elem) => {
 					if (elem.id === isEditItem) {
-						return { ...elem, name: inputData };
+						return { ...elem, title: inputData };
 					}
 					return elem;
 				})
@@ -37,11 +37,22 @@ const Todo = () => {
 			setIsEditItem(null);
 			setErrorMessage('');
 		} else {
-			const allInputData = { id: new Date().getTime().toString(), name: inputData };
+			const allInputData = { id: new Date().getTime().toString(), title: inputData };
 			setItems([...items, allInputData]);
 			setInputData('');
 			setErrorMessage('');
 		}
+	};
+
+	//fetch data
+	const fetchData = () => {
+		fetch('https://jsonplaceholder.typicode.com/todos')
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				setItems(data);
+			});
 	};
 
 	//delete items
@@ -62,7 +73,7 @@ const Todo = () => {
 		// console.log(newEditItem);
 
 		setToggleSubmit(false);
-		setInputData(newEditItem.name);
+		setInputData(newEditItem.title);
 		setIsEditItem(id);
 	};
 
@@ -70,6 +81,10 @@ const Todo = () => {
 	const removeAll = () => {
 		setItems([]);
 	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	// add data to local Storage
 	useEffect(() => {
@@ -100,7 +115,7 @@ const Todo = () => {
 						{items.map((elem) => {
 							return (
 								<div className='eachItem' key={elem.id}>
-									<h3>{elem.name}</h3>
+									<h3>{elem.title}</h3>
 									<div className='todo-btn'>
 										<i className='far fa-edit add-btn' title='Edit Items' onClick={() => editItem(elem.id)}></i>
 										<i className='far fa-trash-alt add-btn' title='Delete Items' onClick={() => deleteItem(elem.id)}></i>
